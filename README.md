@@ -46,4 +46,7 @@ Funcionalidades:
 
 -Menus interativos que facilitam a navegação usando teclado
 
-Desenvolvido por: Guilherme Campos
+Trabalho realizado como parte da disciplina de Programação Orientada a Objetos 
+
+aluno: Guilherme Campos
+
