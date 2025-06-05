@@ -7,6 +7,8 @@ Tecnologias utilizadas:
 
 -Programação Orientada a Objetos (POO)
 
+-Desenvolvido no Visual Studio Code
+
 
 
 Estrutura do projeto:
