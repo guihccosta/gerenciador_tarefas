@@ -7,13 +7,10 @@ Tecnologias utilizadas:
 
 -Programação Orientada a Objetos (POO)
 
--Biblioteca questionary para menus interativos
 
--HTML (páginas simples com formulários)
 
 Estrutura do projeto:
 gerenciador_tarefas/
-├── app.py                  ← Arquivo principal com o Flask e rotas
 ├── banco.py                ← Conexão com o banco SQLite
 ├── tarefas.db              ← Arquivo do banco (criado automaticamente)
 ├── README.md               ← Explicação do projeto
@@ -21,11 +18,7 @@ gerenciador_tarefas/
 ├── classe/
 │   ├── usuario.py          ← Classe de usuário
 │   └── tarefa.py           ← Classe de tarefa
-│
-├── templates/              ← HTMLs das páginas web
-│   ├── login.html
-│   ├── cadastro.html
-│   └── tarefas.html
+
 
 
 
