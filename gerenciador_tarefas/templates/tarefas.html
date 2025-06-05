@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head><title>Tarefas</title></head>
+  <body>
+    <h2>Minhas Tarefas</h2>
+    <a href="{{ url_for('criar_tarefa', usuario_id=usuario_id) }}">Criar Nova Tarefa</a><br><br>
+    <ul>
+      {% for id, titulo, status, prazo, prioridade in tarefas %}
+        <li>
+          {{ id }} - {{ titulo }} | Status: {{ status }} | Prazo: {{ prazo }} | Prioridade: {{ prioridade }}
+          {% if status == 'pendente' and prazo < hoje.strftime('%Y-%m-%d') %}
+            ⚠️ ATRASADA
+          {% endif %}
+          - <a href="{{ url_for('concluir_tarefa', usuario_id=usuario_id, tarefa_id=id) }}">Concluir</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
