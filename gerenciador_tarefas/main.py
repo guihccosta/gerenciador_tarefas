@@ -1,4 +1,3 @@
-import questionary
 from banco import criar_tabelas
 from classe.usuario import Usuario
 from classe.tarefa import Tarefa
@@ -7,24 +6,18 @@ from datetime import datetime
 
 def menu_principal(usuario_id):
     while True:
-        opcao = questionary.select(
-            "O que deseja fazer?",
-            choices=[
-                "1. Criar tarefa",
-                "2. Listar tarefas",
-                "3. Marcar tarefa como concluída",
-                "0. Sair"
-            ]
-        ).ask()[0]  # Pega o número da opção como string
+        print("\nO que deseja fazer?")
+        print("1. Criar tarefa")
+        print("2. Listar tarefas")
+        print("3. Marcar tarefa como concluída")
+        print("0. Sair")
+        opcao = input("Escolha uma opção: ")
 
         if opcao == "1":
-            titulo = questionary.text("Título da tarefa:").ask()
-            descricao = questionary.text("Descrição:").ask()
-            prazo = questionary.text("Prazo (AAAA-MM-DD):").ask()
-            prioridade = questionary.select(
-                "Prioridade:",
-                choices=["alta", "média", "baixa"]
-            ).ask()
+            titulo = input("Título da tarefa: ")
+            descricao = input("Descrição: ")
+            prazo = input("Prazo (AAAA-MM-DD): ")
+            prioridade = input("Prioridade (alta, média, baixa): ").lower()
             tarefa = Tarefa(titulo, descricao, prazo, prioridade, usuario_id)
             tarefa.salvar()
             print("Tarefa criada com sucesso!")
@@ -45,29 +38,30 @@ def menu_principal(usuario_id):
                 print(f"{id} - {titulo} | Status: {status} | Prazo: {prazo} | Prioridade: {prioridade} {vencida}")
 
         elif opcao == "3":
-            tarefa_id = questionary.text("ID da tarefa a concluir:").ask()
+            tarefa_id = input("ID da tarefa a concluir: ")
             Tarefa.concluir(tarefa_id)
             print("Tarefa marcada como concluída!")
 
         elif opcao == "0":
+            print("Saindo do menu principal...")
             break
+
+        else:
+            print("Opção inválida. Tente novamente.")
 
 
 def menu_login():
     print("--- BEM-VINDO ---")
     while True:
-        opcao = questionary.select(
-            "Escolha uma opção:",
-            choices=[
-                "1. Login",
-                "2. Cadastrar novo usuário",
-                "0. Sair"
-            ]
-        ).ask()[0]
+        print("\nEscolha uma opção:")
+        print("1. Login")
+        print("2. Cadastrar novo usuário")
+        print("0. Sair")
+        opcao = input("Digite a opção: ")
 
         if opcao == "1":
-            nome = questionary.text("Nome de usuário:").ask()
-            senha = questionary.password("Senha:").ask()
+            nome = input("Nome de usuário: ")
+            senha = input("Senha: ")
             usuario_id = Usuario.login(nome, senha)
             if usuario_id:
                 print("Login bem-sucedido!")
@@ -76,14 +70,17 @@ def menu_login():
                 print("Usuário ou senha inválidos.")
 
         elif opcao == "2":
-            nome = questionary.text("Escolha um nome de usuário:").ask()
-            senha = questionary.password("Escolha uma senha:").ask()
+            nome = input("Escolha um nome de usuário: ")
+            senha = input("Escolha uma senha: ")
             Usuario.cadastrar(nome, senha)
             print("Usuário cadastrado com sucesso!")
 
         elif opcao == "0":
             print("Encerrando o sistema.")
             break
+
+        else:
+            print("Opção inválida. Tente novamente.")
 
 
 if __name__ == "__main__":
