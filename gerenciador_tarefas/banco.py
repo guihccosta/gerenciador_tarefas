@@ -1,12 +1,16 @@
-import sqlite3
+import sqlite3 # Importa o módulo SQLite, um banco de dados leve embutido no Python
 
+# Função para conectar ao banco de dados (ou criar se não existir)
 def conectar():
-    return sqlite3.connect("tarefas.db")
+    return sqlite3.connect("tarefas.db") # Retorna uma conexão com o arquivo 'tarefas.db'
 
+
+# Função para criar as tabelas do banco, caso ainda não existam
 def criar_tabelas():
-    conn = conectar()
-    cursor = conn.cursor()
+    conn = conectar() # Estabelece conexão com o banco de dados
+    cursor = conn.cursor() # Cria um cursor para executar comandos SQL
 
+    # Cria a tabela de usuários se ela ainda não existir
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS usuarios (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -15,6 +19,7 @@ def criar_tabelas():
         )
     ''')
 
+    # Cria a tabela de tarefas se ela ainda não existir
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS tarefas (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -28,5 +33,5 @@ def criar_tabelas():
         )
     ''')
 
-    conn.commit()
-    conn.close()
+    conn.commit() # Salva as alterações feitas no banco
+    conn.close() # Fecha a conexão com o banco
