@@ -1,6 +1,10 @@
 from banco import conectar
 
+#Criação da classe usuário
 class Usuario:
+    # @staticmethod é usado aqui porque o método não precisa acessar ou modificar
+    # nenhum atributo da instância (self) ou da classe (cls).
+    # Ele funciona de forma independente, usando apenas os argumentos passados
     @staticmethod
     def cadastrar(nome, senha):
         conn = conectar()
@@ -9,6 +13,7 @@ class Usuario:
         conn.commit()
         conn.close()
 
+    # Também é um método independente: realiza o login sem depender de atributos da instância.
     @staticmethod
     def login(nome, senha):
         conn = conectar()
